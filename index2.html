@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вывод на страницу</title>
+</head>
+<body>
+<!-- Использование FOR -->
+  <script>
+    for (let i = 0; i <= 10; i++) {
+      if (i === 0) {
+          console.log(`${i} – это ноль`);
+      } else if (i % 2 === 0) {
+          console.log(`${i} – четное число`);
+      } else {
+          console.log(`${i} – нечетное число`);
+      }
+    }
+  </script>
+
+<!-- Изменение массива -->
+  <script>
+    const arr = [1, 2, 3, 4, 5, 6, 7];
+    const newArr = arr.filter(num => num < 4 || num > 5);
+    console.log(newArr); // [1, 2, 3, 6, 7]
+  </script>
+
+<!-- Генерирование случайных чисел -->
+  <script>
+    // Генерация массива из 5 случайных цифр от 0 до 9
+    const randomArray = Array.from({ length: 5 }, () => Math.floor(Math.random() * 10));
+    // 1. Рассчитать сумму элементов этого массива
+    const sum = randomArray.reduce((acc, num) => acc + num, 0);
+    // 2. Найти минимальное число
+    const min = Math.min(...randomArray);
+    // 3. Найти есть ли в этом массиве число 3
+    const hasThree = randomArray.includes(3);
+    // Вывод результатов
+    console.log('Сгенерированный массив:', randomArray);
+    console.log('Сумма элементов:', sum);
+    console.log('Минимальное число:', min);
+    console.log('Есть ли число 3:', hasThree);
+  </script>
+
+<!-- Горочка -->
+  <script>
+    for (let i = 1; i <= 20; i++) {
+      console.log(' '.repeat(20 - i) + '*'.repeat(i));
+  }
+  </script>
+  
+</body>
+</html>

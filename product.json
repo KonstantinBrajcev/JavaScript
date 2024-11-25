@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "name": "Товар 1",
+    "price": 1999,
+    "image": "image_1.jpg",
+    "description": "Описание товара 1"
+  },
+  {
+    "id": 2,
+    "name": "Товар 2",
+    "price": 2999,
+    "image": "image_2.jpg",
+    "description": "Описание товара 2"
+  },
+  {
+    "id": 3,
+    "name": "Товар 3",
+    "price": 3999,
+    "image": "image_3.jpg",
+    "description": "Описание товара 3"
+  },
+  {
+    "id": 1,
+    "name": "Товар 1",
+    "price": 1999,
+    "image": "image_1.jpg",
+    "description": "Описание товара 1"
+  },
+  {
+    "id": 2,
+    "name": "Товар 2",
+    "price": 2999,
+    "image": "image_2.jpg",
+    "description": "Описание товара 2"
+  },
+  {
+    "id": 3,
+    "name": "Товар 3",
+    "price": 3999,
+    "image": "image_3.jpg",
+    "description": "Описание товара 3"
+  }
+]

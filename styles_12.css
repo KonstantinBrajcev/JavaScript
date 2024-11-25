@@ -1,0 +1,42 @@
+.featured-items {
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.items-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.item {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  width: 200px;
+  /* Ширина карточки товара */
+}
+
+.item img {
+  max-width: 100%;
+  height: auto;
+}
+
+.cart {
+  display: none;
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.remove-item {
+  cursor: pointer;
+  color: red;
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Расписание занятий</title>
+    <style>
+        .card {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Расписание занятий</h1>
+        <div id="schedule" class="mt-4"></div>
+    </div>
+
+    <script>
+        let classes = [];
+
+        async function loadClasses() {
+            const response = await fetch('http://localhost:3000/classes');
+            if (!response.ok) {
+                throw new Error('Ошибка загрузки данных');
+            }
+            classes = await response.json();
+            renderClasses();
+        }
+
+        async function updateClasses() {
+            await fetch('http://localhost:3000/update-classes', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(classes)
+            });
+        }
+
+        function renderClasses() {
+            const scheduleDiv = document.getElementById('schedule');
+            scheduleDiv.innerHTML = '';
+
+            classes.forEach((classItem, index) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-body">
+                        <h5 class="card-title">${classItem.title}</h5>
+                        <p class="card-text">Время: ${classItem.time}</p>
+                        <p class="card-text">Макс. участников: ${classItem.maxParticipants}</p>
+                        <p class="card-text">Записанные участники: ${classItem.currentParticipants}</p>
+                        <button class="btn btn-primary" id="register-${index}" ${classItem.currentParticipants >= classItem.maxParticipants ? 'disabled' : ''}>Записаться</button>
+                        <button class="btn btn-danger" id="cancel-${index}" ${classItem.currentParticipants === 0 ? 'disabled' : ''}>Отменить запись</button>
+                    </div>
+                `;
+                scheduleDiv.appendChild(card);
+
+                document.getElementById(`register-${index}`).addEventListener('click', async () => {
+                    if (classItem.currentParticipants < classItem.maxParticipants) {
+                        classItem.currentParticipants++;
+                        await updateClasses();
+                        renderClasses();
+                    }
+                });
+
+                document.getElementById(`cancel-${index}`).addEventListener('click', async () => {
+                    if (classItem.currentParticipants > 0) {
+                        classItem.currentParticipants--;
+                        await updateClasses();
+                        renderClasses();
+                    }
+                });
+            });
+        }
+
+        loadClasses().catch(error => {
+            console.error('Ошибка:', error);
+        });
+    </script>
+</body>
+</html>

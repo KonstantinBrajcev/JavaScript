@@ -1,6 +1,53 @@
-<html>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вывод на страницу</title>
+</head>
 <body>
-<!-- <Script src="index.js"></Script>  -->
-<Script scr="my_first_program.py"></Script>   
+
+
+  <!-- Сумма квадратов -->
+  <p>Сумма квадратов</p>
+  <div id="resultsum" style="font-size: 25px;">
+    <input type="text" id="userInput1" placeholder="Введите число 1">
+    <input type="text" id="userInput2" placeholder="Введите число 2">
+    <button id="sumButton">Рассчитать</button>
+  </div> <!-- Элемент для отображения результата -->
+  <script src="index3.js"></script>
+
+
+  <!-- Расчет процентов от числа -->
+  <p>Процент от числа</p>
+  <div id="resultcalc" style="font-size: 25px;">
+    <input type="text" id="userInput" placeholder="Введите число">
+    <button id="calculateButton">Рассчитать</button>
+  </div>
+  <script src="calculate.js"></script>
+
+
+  <!-- Три числа -->
+  <p>Сумма трех чисел</p>
+  <div id="resultsumma" style="font-size: 25px;">
+    <input type="text" id="number1" placeholder="Введите число 1">
+    <input type="text" id="number2" placeholder="Введите число 2">
+    <input type="text" id="number3" placeholder="Введите число 3">
+    <button id="findMaxButton">Найти максимум</button>
+  </div>
+  <script src="summa.js"></script>
+
+  <!-- Функции + - * / -->
+  <p>Функции 'сложение', 'вычитание', 'умножение', 'деление'</p>
+  <div id="mathFunction" style="font-size: 25px;">
+    <input type="text" id="func1" placeholder="Введите число 1">
+    <input type="text" id="func2" placeholder="Введите число 2">
+    <button id="allFunctions">Вычислить</button>
+  </div>
+  <script src="function.js"></script>
+
+  <script src="stroki.js"></script>
+
+  <script src="data.js"></script>
 </body>
 </html>
