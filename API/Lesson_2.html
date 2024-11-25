@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Слайдер изображений</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="slider">
+  <div id="image-container">
+      <img src="image1.jpg" alt="Изображение 1">
+      <img src="image2.jpg" alt="Изображение 2">
+      <img src="image3.jpg" alt="Изображение 3">
+  </div>
+  <button class="button prev" onclick="prevImage()">Предыдущее изображение</button>
+  <button class="button next" onclick="nextImage()">Следующее изображение</button>
+</div>
+
+<div class="indicators" id="indicators"></div>
+
+<script>
+  const images = document.querySelectorAll('#image-container img');
+  const indicatorsContainer = document.getElementById('indicators');
+  let currentIndex = 0;
+
+  function updateSlider() {
+      const offset = -currentIndex * 100;
+      document.getElementById('image-container').style.transform = `translateX(${offset}%)`;
+      updateIndicators();
+  }
+
+  function updateIndicators() {
+      indicatorsContainer.innerHTML = '';
+      images.forEach((_, index) => {
+          const indicator = document.createElement('div');
+          indicator.classList.add('indicator');
+          if (index === currentIndex) {
+              indicator.classList.add('active');
+          }
+          indicator.onclick = () => {
+              currentIndex = index;
+              updateSlider();
+          };
+          indicatorsContainer.appendChild(indicator);
+      });
+  }
+
+  function nextImage() {
+      currentIndex = (currentIndex + 1) % images.length;
+      updateSlider();
+  }
+
+  function prevImage() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      updateSlider();
+  }
+
+  updateIndicators();
+</script>
+</body>
+</html>
