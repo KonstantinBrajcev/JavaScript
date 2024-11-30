@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 1 - advansed JavaScript</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="music">
+    <h1>Музыкальная коллекция</h1>
+    <button id="displayAlbums" onclick="displayAlbums()">Показать альбомы</button>
+    <button id="hideAlbums" onclick="hideAlbums()">Скрыть альбомы</button>
+    <div id="output"></div>
+    <button onclick="nextAlbum()">Следующий альбом</button>
+    <div id="current-album"></div>
+  </div>
+
+  <div class="orders">
+    <h1>Система управления заказами ресторана</h1>
+    <button id="displayClients" onclick="displayClients()">Показать клиентов</button>
+    <button id="hideClients" onclick="hideClients()">Скрыть клиентов</button>
+    <div id="all_orders"></div>
+    <button id="addClientBtn">Добавить клиента</button>
+  </div>
+
+    <!-- Модальное окно для добавления клиента -->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Добавить нового клиента</h2>
+        <label for="clientName">Имя клиента:</label>
+        <input type="text" id="clientName" required>
+        <h3>Выберите блюда:</h3>
+          <div id="dishOptions"></div>
+        <button id="submitOrder">Добавить заказ</button>
+      </div>
+    </div>
+
+<!-- СКРИПТЫ -->
+<script src="musicCollection.js"></script>
+<script src="orderCollection.js"></script>
+</body>
+</html>
