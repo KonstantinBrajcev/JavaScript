@@ -8,13 +8,45 @@
 </head>
 <body>
     <h1>Добавить отзыв о продукте</h1>
-    <form id="reviewForm">
-        <input type="text" id="productName" placeholder="Название продукта" required>
+    <form id="reviewForm" onsubmit="addReview(event)">
+        <input type="text" id="product" placeholder="Название продукта" required>
         <textarea id="reviewText" placeholder="Ваш отзыв" required></textarea>
         <button type="submit">Добавить отзыв</button>
     </form>
+    
     <a href="reviews.html">Просмотреть отзывы</a>
+    <!-- <div id="reviewsContainer"></div> -->
 
-    <script src="script.js"></script>
+    <script>
+        // Функция для добавления отзыва
+        function addReview(event) {
+            event.preventDefault(); // Предотвращаем перезагрузку страницы
+    
+            const product = document.getElementById('product').value;
+            const text = document.getElementById('reviewText').value;
+            console.log('Отправляемые данные:', { product, text });
+    
+            fetch('http://localhost:4000/add-review', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ product, text })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(text || 'Ошибка при добавлении отзыва');
+                }
+                return text;
+            })
+            .then(data => {
+                console.log(data);
+                // Очистка формы или обновление списка отзывов
+            })
+            .catch(error => {
+                alert('Ошибка: ' + error.message);
+            });
+        }
+    </script>
 </body>
 </html>

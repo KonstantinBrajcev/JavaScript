@@ -10,7 +10,44 @@
     <h1>Отзывы о продуктах</h1>
     <div id="reviewsContainer"></div>
     <a href="index.html">Добавить отзыв</a>
+    <script>
+        async function loadReviews() {
+            try {
+                const response = await fetch('/reviews');
+                if (!response.ok) {
+                    throw new Error('Ошибка загрузки данных');
+                }
+                const reviews = await response.json();
+                displayReviews(reviews);
+            } catch (error) {
+                console.error(error);
+            }
+        }
 
-    <script src="script.js"></script>
+        function displayReviews(reviews) {
+            const reviewsContainer = document.getElementById('reviewsContainer');
+            reviewsContainer.innerHTML = '';
+
+            reviews.forEach(product => {
+                const productDiv = document.createElement('div');
+                productDiv.innerHTML = `<strong>${product.product}</strong>:`;
+
+                // Создаем список для отзывов
+                const reviewsList = document.createElement('ul');
+                product.reviews.forEach(review => {
+                    const reviewItem = document.createElement('li');
+                    reviewItem.textContent = review.text; // Отображаем текст отзыва
+                    reviewsList.appendChild(reviewItem);
+                });
+
+                productDiv.appendChild(reviewsList);
+                reviewsContainer.appendChild(productDiv);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadReviews();
+        });
+    </script>
 </body>
 </html>
