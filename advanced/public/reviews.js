@@ -3,7 +3,7 @@ let initialData = [];
 // Функция для загрузки отзывов
 async function loadReviews() {
   try {
-    const response = await fetch('reviews.json');
+    const response = await fetch('reviews_3.json');
     if (!response.ok) {
       throw new Error('Ошибка загрузки данных');
     }
@@ -68,20 +68,26 @@ function addReview() {
 
   const newReview = {
     id: (initialData.reduce((maxId, product) => Math.max(maxId, Math.max(...product.reviews.map(r => parseInt(r.id)))), 0) + 1).toString(),
-    product: productName,
     text: reviewText,
   };
 
-  // Добавляем новый отзыв к массиву
-  if (!initialData.length) {
-    initialData.push({ product: productName, reviews: [] });
+  // Проверяем, существует ли продукт в массиве
+  const existingProduct = initialData.find(product => product.product === productName);
+
+  if (existingProduct) {
+    // Если продукт существует, добавляем отзыв к этому продукту
+    existingProduct.reviews.push(newReview);
+  } else {
+    // Если продукта нет, создаем новый объект продукта
+    initialData.push({ product: productName, reviews: [newReview] });
   }
-  initialData[0].reviews.push(newReview);
+
   productInput.value = ''; // Очистка текстового поля
   reviewInput.value = ''; // Очистка текстового поля
   displayReviews(); // Обновляем отображение отзывов
   saveReviews(); // Сохраняем отзывы в файл
 }
+
 
 // Функция для сохранения отзывов в файл
 async function saveReviews() {
